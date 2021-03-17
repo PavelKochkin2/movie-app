@@ -4,8 +4,22 @@ import SideMenu from '../components/sideMenu'
 import Carousel from '../components/carousel'
 import MovieList from '../components/movieList'
 import Footer from '../components/footer'
+import React, { useState } from 'react'
 
 export default function Home() {
+
+  const [count, setCount] = useState(0)
+
+  const increment = () => {
+    const newCount = count + 1
+    setCount(newCount)
+  }
+
+  const decrement = () => {
+    const newCount = count - 1
+    setCount(newCount)
+  }
+
   return (
     <div>
       <Head>
@@ -20,17 +34,20 @@ export default function Home() {
 
       <div className="home-page">
         <div className="container">
+
+          <button onClick={increment} className="btn btn-primary">Increment Number</button>
+          <button onClick={decrement} className="btn btn-primary">Decrement Number</button>
           <div className="row">
 
             <div className="col-lg-3">
-              <SideMenu />
+              <SideMenu count={count} />
             </div>
 
 
             <div className="col-lg-9">
               <Carousel />
               <div className="row">
-                <MovieList />
+                <MovieList count={count} />
               </div>
             </div>
           </div>

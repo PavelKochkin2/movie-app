@@ -2,68 +2,12 @@ import React from 'react'
 
 
 class MovieList extends React.Component {
-
-
-    // state = {
-    //     count: 0
-    // }
-
-    increment = () => {
-        //const count = this.state.count;
-        const { count } = this.state;
-
-        //VERY BAD
-        //this.state.count = count + 1;
-
-        this.setState({
-            count: count + 1
-        })
-    }
-
-    //not working
-    // decrement() {
-    //       //const count = this.state.count;
-    //     const { count } = this.state;
-
-
-    //     //VERY BAD
-    //     //this.state.count = count + 1;
-
-    //     this.setState({
-    //         count: count - 1
-    //     })
-    // }
-
-    decrement = () => {
-        //const count = this.state.count;
-        const { count } = this.state;
-
-
-        //VERY BAD
-        //this.state.count = count + 1;
-
-        this.setState({
-            count: count - 1
-        })
-    }
-
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            count: 0
-        }
-    }
-
     render() {
         return (
             <React.Fragment>
 
                 <div>
-                    <button onClick={this.increment} className="btn btn-primary">Increment number</button>
-                    <button onClick={this.decrement} className="btn btn-primary">Decrement number</button>
-
-                    <h1>{this.state.count}</h1>
+                    <h1>{this.props.count}</h1>
                 </div>
 
 
