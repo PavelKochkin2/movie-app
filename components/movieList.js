@@ -9,12 +9,42 @@ class MovieList extends React.Component {
     // }
 
     increment = () => {
-        this.state.count = this.state.count + 1;
-        console.log(this.state.count);
+        //const count = this.state.count;
+        const { count } = this.state;
+
+        //VERY BAD
+        //this.state.count = count + 1;
+
+        this.setState({
+            count: count + 1
+        })
     }
 
-    decrement() {
-        alert('decrementing number!');
+    //not working
+    // decrement() {
+    //       //const count = this.state.count;
+    //     const { count } = this.state;
+
+
+    //     //VERY BAD
+    //     //this.state.count = count + 1;
+
+    //     this.setState({
+    //         count: count - 1
+    //     })
+    // }
+
+    decrement = () => {
+        //const count = this.state.count;
+        const { count } = this.state;
+
+
+        //VERY BAD
+        //this.state.count = count + 1;
+
+        this.setState({
+            count: count - 1
+        })
     }
 
     constructor(props) {
