@@ -29,12 +29,11 @@ const MOVIE_DATA = [
 ]
 
 export const getMovies = () => {
-    debugger
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            debugger
             resolve(MOVIE_DATA)
-        }, 6000)
+            reject("Cannot fetch data!")
+        }, 50)
     })
 
 
