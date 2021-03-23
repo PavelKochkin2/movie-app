@@ -1,11 +1,3 @@
-// import '../styles/globals.css'
-
-// function MyApp({ Component, pageProps }) {
-//   return <Component {...pageProps} />
-// }
-
-// export default MyApp
-
 import App from 'next/app'
 import Head from 'next/head'
 import Navbar from '../components/navbar'
@@ -14,10 +6,16 @@ class MovieApp extends App {
 
 
   //TODO: execute here getInitialProps and pass this data to your page
+
+  static async getInitialProps(appContext) {
+    //Executing getInitialProps of page you are navigated to
+    const appProps = await App.getInitialProps(appContext)
+    return { ...appProps }
+  }
   render() {
 
     //Component holds page you are natigating to
-    const { Component } = this.props
+    const { Component, pageProps } = this.props
 
     return (
       <div>
@@ -31,7 +29,7 @@ class MovieApp extends App {
         <Navbar />
 
         <div className="base-page">
-          <Component />
+          <Component {...pageProps} />
         </div>
         <Footer />
         <style jsx>{`
