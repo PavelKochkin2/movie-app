@@ -14,22 +14,31 @@ const Movie = (props) => {
 
             <div className="jumbotron">
                 <h1 className="display-4">{movie.name}</h1>
-                <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <p className="lead">{movie.description}</p>
                 <hr className="my-4" />
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <p>Genre: {movie.genre}</p>
                 <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
             </div>
 
-            <p>
-                Some description about the movie
+            <p className="descr-text">
+                {movie.fullDescr}
             </p>
+
+            <style jsx>{`
+            .descr-text {
+                font-size: 25px
+            }
+            `}
+
+            </style>
 
         </div>
     )
 }
 
 Movie.getInitialProps = async (ctx) => {
-    const movie = await getMovieById('2')
+    const { id } = ctx.query
+    const movie = await getMovieById(id)
 
     return { movie }
 }
