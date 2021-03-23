@@ -1,5 +1,6 @@
 
 import Modal from './modal'
+import CreateMovieForm from './createMovieForm'
 
 
 const SideMenu = (props) => {
@@ -8,7 +9,10 @@ const SideMenu = (props) => {
 
     return (
         <div>
-            <Modal />
+            {/* Containment */}
+            <Modal>
+                <CreateMovieForm />
+            </Modal>
             <h1 className="my-4">{props.shopName}</h1>
             <div className="list-group">
                 {categories.map((category, index) => (
@@ -18,7 +22,7 @@ const SideMenu = (props) => {
                 ))}
 
             </div>
-        </div>
+        </div >
     )
 }
 export default SideMenu
