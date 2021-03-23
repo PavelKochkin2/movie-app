@@ -13,9 +13,9 @@ const Home = (props) => {
 
   return (
     <div>
-     
 
-    
+
+
 
       <div className="home-page">
         <div className="container">
@@ -35,7 +35,7 @@ const Home = (props) => {
           </div>
         </div>
       </div>
-   
+
 
     </div >
   )
@@ -44,7 +44,7 @@ const Home = (props) => {
 Home.getInitialProps = async () => {
   const movies = await getMovies()
   const shopName = "Movies Paha Shop"
-
+  console.log('Calling getInitProps from Home')
   return {
     movies, shopName
   }
