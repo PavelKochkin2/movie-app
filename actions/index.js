@@ -60,16 +60,22 @@ export const getMovies = () => {
 }
 
 export const getMovieById = (id) => {
-
     return new Promise((resolve, reject) => {
-
         const movieIndex = MOVIE_DATA.findIndex((movie) => {
             return movie.id === id
         })
-
         const movie = MOVIE_DATA[movieIndex]
-
         setTimeout(() => resolve(movie), 50)
+    })
+}
+
+export const createMovie = (movie) => {
+    return new Promise((resolve, reject) => {
+        //create id for a movie
+        MOVIE_DATA.push(movie)
+        setTimeout(() => {
+            resolve(MOVIE_DATA)
+        }, 50)
     })
 }
 
