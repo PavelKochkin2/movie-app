@@ -19,7 +19,7 @@ const Home = (props) => {
           <div className="row">
 
             <div className="col-lg-3">
-              <SideMenu shopName={props.shopName}\
+              <SideMenu shopName={props.shopName}
                 categories={categories} />
             </div>
 
