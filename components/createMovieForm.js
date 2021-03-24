@@ -4,15 +4,17 @@ import { useState } from 'react'
 const CreateMovieForm = (props) => {
 
     const [form, setForm] = useState({
-        name: 'Movie name',
-        description: 'lala'
+        name: '',
+        description: '',
+        rating: '',
+        image: '',
+        fullDescr: ''
     })
 
     const handleChange = (event) => {
         const target = event.target
         const name = target.name
         //setForm({ [event.target.name]: event.target.value })
-
         setForm({
             ...form,
             [name]: target.value
@@ -41,7 +43,7 @@ const CreateMovieForm = (props) => {
     }
 
     return (
-        <htmlForm>
+        <form>
             {JSON.stringify(form)}
             <div className="htmlForm-group">
                 <label htmlFor="name">Name</label>
@@ -99,9 +101,9 @@ const CreateMovieForm = (props) => {
                 <textarea
                     onChange={handleChange}
                     value={form.fullDescr}
-                    name="longDesc"
+                    name="fullDescr"
                     className="htmlForm-control"
-                    id="longDesc"
+                    id="fullDescr"
                     rows="3"></textarea>
             </div>
 
@@ -119,7 +121,7 @@ const CreateMovieForm = (props) => {
             </div>
 
             <button onClick={submitForm} type="button" className="btn btn-primary">Create</button>
-        </htmlForm>
+        </form>
     )
 }
 
