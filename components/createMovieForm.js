@@ -4,11 +4,11 @@ import { useState } from 'react'
 const CreateMoviehtmlForm = () => {
 
     const [form, setForm] = useState({
-        name: 'Some Movie',
+        name: 'Movie name',
         description: 'lala'
     })
 
-    const handleChanges = (event) => {
+    const handleChange = (event) => {
         const target = event.target
         const name = target.name
         debugger
@@ -20,13 +20,31 @@ const CreateMoviehtmlForm = () => {
         })
     }
 
+    const handleGenreChange = (event) => {
+        debugger
+        const { options } = event.target
+        const optionsLength = options.length
+        let selectedGenres = []
+
+        for (let i = 0; i < optionsLength; i++) {
+            if (options[i].selected) {
+                selectedGenres.push(options[i].value)
+            }
+        }
+
+        setForm({
+            ...form,
+            genre: selectedGenres.toString()
+        })
+    }
+
     return (
         <htmlForm>
             {JSON.stringify(form)}
             <div className="htmlForm-group">
                 <label htmlFor="name">Name</label>
                 <input
-                    onChange={handleChanges}
+                    onChange={handleChange}
                     value={form.name}
                     name="name"
                     type="text"
@@ -39,7 +57,7 @@ const CreateMoviehtmlForm = () => {
             <div className="htmlForm-group">
                 <label htmlFor="description">Description</label>
                 <input
-                    onChange={handleChanges}
+                    onChange={handleChange}
                     value={form.description}
                     name="description"
                     type="text"
@@ -51,7 +69,7 @@ const CreateMoviehtmlForm = () => {
             <div className="htmlForm-group">
                 <label htmlFor="description">Rating</label>
                 <input
-                    onChange={handleChanges}
+                    onChange={handleChange}
                     value={form.rating}
                     name="rating"
                     type="number"
@@ -65,7 +83,7 @@ const CreateMoviehtmlForm = () => {
             <div className="htmlForm-group">
                 <label htmlFor="image">Image</label>
                 <input
-                    onChange={handleChanges}
+                    onChange={handleChange}
                     value={form.image}
                     name="image"
                     type="text"
@@ -77,8 +95,8 @@ const CreateMoviehtmlForm = () => {
             <div className="htmlForm-group">
                 <label htmlFor="longDesc">Long Description</label>
                 <textarea
-                    onChange={handleChanges}
-                    value={form.genre}
+                    onChange={handleChange}
+                    value={form.fullDescr}
                     name="longDesc"
                     className="htmlForm-control"
                     id="longDesc"
@@ -87,7 +105,9 @@ const CreateMoviehtmlForm = () => {
 
             <div className="htmlForm-group">
                 <label htmlFor="genre">Genre</label>
-                <select multiple className="htmlForm-control" id="genre">
+                <select
+                    onChange={handleGenreChange}
+                    multiple className="htmlForm-control" id="genre">
                     <option>drama</option>
                     <option>music</option>
                     <option>adventure</option>
