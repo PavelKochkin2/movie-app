@@ -17,15 +17,27 @@ app
             return res.json(movies)
         })
 
+        server.get('/api/v1/movies/:id', (req, res) => {
+            const { id } = req.params
+
+            const movieIndex = movies.findIndex(m => m.id == id)
+            const movie = movies[movieIndex]
+
+            return res.json(movie)
+        })
+
         server.post('/api/v1/movies', (req, res) => {
             const movie = req.body
-            console.log(JSON.stringify(movie))
             return res.json({ ...movie, createdTime: 'today', author: 'Filip' })
         })
 
         server.patch('/api/v1/movies/:id', (req, res) => {
             const { id } = req.params
-            return res.json({ message: `Updating post of id: ${id}` })
+
+            const movieIndex = movies.findIndex(m => m.id == id)
+            const movie = movies[movieIndex]
+
+            return res.json(movie)
         })
 
         server.delete('/api/v1/movies/:id', (req, res) => {
