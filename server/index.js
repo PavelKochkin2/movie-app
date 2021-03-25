@@ -5,13 +5,22 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const movies = require('./movies')
+
+
+const fs = require('fs')
+const path = require('path')
+const filePath = './movies.json'
+const movies = require(filePath)
+
+
 
 app
     .prepare()
     .then(() => {
 
         const server = express();
+        
+        server.use(express.json())
 
         server.get('/api/v1/movies', (req, res) => {
             return res.json(movies)
@@ -20,15 +29,26 @@ app
         server.get('/api/v1/movies/:id', (req, res) => {
             const { id } = req.params
 
-            const movieIndex = movies.findIndex(m => m.id == id)
-            const movie = movies[movieIndex]
+            const movie = movies.find(m => m.id == id)
 
             return res.json(movie)
         })
 
         server.post('/api/v1/movies', (req, res) => {
             const movie = req.body
-            return res.json({ ...movie, createdTime: 'today', author: 'Filip' })
+            console.log(`MOVIE: ${movie}`)
+            movies.push(movie)
+
+            const pathToFile = path.join(__dirname, filePath)
+            const stringifiedData = JSON.stringify(movies, null, 2)
+
+            fs.writeFile(pathToFile, stringifiedData, (err) => {
+                if (err) {
+                    return res.status(422).send(err)
+                }
+
+                return res.json('Movie has been succesfuly added!')
+            })
         })
 
         server.patch('/api/v1/movies/:id', (req, res) => {

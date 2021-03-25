@@ -2,15 +2,18 @@
 import Modal from './modal'
 import CreateMovieForm from './createMovieForm'
 import { createMovie } from '../actions/index'
+import { useRouter } from 'next/router'
 
 const SideMenu = (props) => {
 
     const { categories } = props
+    const router = useRouter()
     let modal = null
 
     const handleCreateMovie = (movie) => {
         createMovie(movie).then((movies) => {
             modal.closeModal()
+            router.push('/')
         })
     }
 
