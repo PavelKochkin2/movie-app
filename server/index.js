@@ -19,7 +19,7 @@ app
     .then(() => {
 
         const server = express();
-        
+
         server.use(express.json())
 
         server.get('/api/v1/movies', (req, res) => {
@@ -62,7 +62,20 @@ app
 
         server.delete('/api/v1/movies/:id', (req, res) => {
             const { id } = req.params
-            return res.json({ message: `Deleting post of id: ${id}` })
+            const movieIndex = movies.findIndex(m => m.id == id)
+
+            movies.splice(movieIndex, 1)
+
+            const pathToFile = path.join(__dirname, filePath)
+            const stringifiedData = JSON.stringify(movies, null, 2)
+
+            fs.writeFile(pathToFile, stringifiedData, (err) => {
+                if (err) {
+                    return res.status(422).send(err)
+                }
+
+                return res.json('Movie has been succesfuly added!')
+            })
         })
 
         //we are handling all requests coming to the server

@@ -36,3 +36,8 @@ export const createMovie = (movie) => {
     return axios.post(`${BASE_URL}/api/v1/movies`, movie).then(res => res.data)
 }
 
+export const deleteMovie = async (id) => {
+    const res = await axios.delete(`${BASE_URL}/api/v1/movies/${id}`)
+    return res.data
+}
+

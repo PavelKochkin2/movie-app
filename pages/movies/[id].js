@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { getMovieById } from '../../actions/index'
+import { getMovieById, deleteMovie } from '../../actions/index'
 
 const Movie = (props) => {
 
@@ -7,6 +7,13 @@ const Movie = (props) => {
     const { movie } = props
 
     const { id } = router.query
+
+    const handleDeleteMovie = (id) => {
+        deleteMovie(id).then(() => {
+            router.push('/')
+        })
+    }
+
     return (
         <div className="container">
 
@@ -17,7 +24,8 @@ const Movie = (props) => {
                 <p className="lead">{movie.description}</p>
                 <hr className="my-4" />
                 <p>Genre: {movie.genre}</p>
-                <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                <a className="btn btn-primary btn-lg mr-1" href="#" role="button">Learn more</a>
+                <a onClick={() => handleDeleteMovie(id)} className="btn btn-danger btn-lg " href="#" role="button">Delete</a>
             </div>
 
             <p className="descr-text">
