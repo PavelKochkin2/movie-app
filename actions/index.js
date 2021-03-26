@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-const MOVIE_DATA = []
 const BASE_URL = "http://localhost:3000"
 const CATEGORY_DATA = [
     { 'id': '1', 'name': 'drama' },
